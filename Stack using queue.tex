@@ -1,0 +1,104 @@
+\documentclass{article}
+\usepackage{listings}
+\usepackage{graphicx}
+
+\title{Implementing a Stack Using Two Queues}
+\author{B-09,15}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+A \textbf{Stack} is a fundamental data structure that follows the Last-In-First-Out (LIFO) principle. This means that the last element added to the stack is the first one to be removed. Stacks support two primary operations: \texttt{push} (to add an element) and \texttt{pop} (to remove the top element).
+
+\section{Stack Using Two Queues}
+To implement a stack using two queues, you can use the following approach:
+
+- Maintain two queues, which we'll call \texttt{queue1} and \texttt{queue2}.
+
+- The \texttt{push} operation can be achieved in \textit{linear time}. To push an element, enqueue it into \texttt{queue1}.
+
+- The \texttt{pop} operation can be achieved in \textit{constant time}. To pop an element, dequeue all elements from \texttt{queue1} except the last one and enqueue them into \texttt{queue2}. The last element in \texttt{queue1} is the one to be popped.
+
+\section{Time Complexity}
+In this context:
+
+- \textit{Linear time} means that the time complexity grows linearly with the size of the data structure (\(O(N)\)).
+
+- \textit{Constant time} means that the time complexity remains constant (\(O(1)\)) regardless of the data size.
+
+\section{Algorithm}
+To construct a stack using two queues (q1, q2), we need to simulate the stack operations by using queue operations:
+
+\textbf{Push}
+\begin{itemize}
+    \item if q1 is empty, enqueue E to q1
+\end{itemize}
+\begin{itemize}
+    \item if q1 is not empty, enqueue all elements from q1 to q2, then enqueue E to q1, and enqueue all elements from q2 back to q1
+\end{itemize}
+\textbf{Pop}
+\begin{itemize}
+    \item dequeue an element from q1
+\end{itemize}
+As we see, q1 acts as the main source for the stack, while q2 is just a helper queue that we use to preserve the order expected by the stack.
+
+The pseudocode of the push and pop operations are:
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{Stack-Operations-768x475.png}
+    \caption{Enter Caption}
+    \label{fig:enter-label}
+\end{figure}
+\section{Program Implementation}
+\lstset{language=C}
+\begin{lstlisting}
+// C code for implementing a stack using two queues
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Queue {
+    // Define the structure for a queue
+    // ...
+
+    // Function to enqueue an element
+    void enqueue(int item) {
+        // Code here...
+    }
+
+    // Function to dequeue an element
+    int dequeue() {
+        // Code here...
+    }
+};
+
+struct StackUsingQueues {
+    // Define the structure for a stack using two queues
+    struct Queue queue1;
+    struct Queue queue2;
+
+    // Function to push an element onto the stack
+    void push(int item) {
+        // Code here...
+    }
+
+    // Function to pop the top element from the stack
+    int pop() {
+        // Code here...
+    }
+};
+\end{lstlisting}
+
+\section{Program Output}
+Show the expected output when running the implemented stack program. Include sample inputs and outputs.
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{PushanelementinStack.png}
+    \caption{Enter Caption}
+    \label{fig:enter-label}
+\end{figure}
+\section{Conclusion}
+In this project, we demonstrated how to implement a stack using two queues with specific time complexities. Achieving linear time for \texttt{push} and constant time for \texttt{pop} operations is a significant accomplishment in data structure design.
+
+\end{document}
